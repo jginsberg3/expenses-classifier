@@ -134,6 +134,13 @@ button:disabled {
   animation: fadeIn 0.5s ease-out;
 }
 
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .category-badge {
   display: inline-block;
   padding: 0.5rem 1.5rem;
@@ -142,8 +149,29 @@ button:disabled {
   border-radius: 9999px;
   font-size: 0.9rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
   border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.download-btn {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.download-btn:hover {
+  background: rgba(148, 163, 184, 0.2);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
 }
 
 .category-name {
