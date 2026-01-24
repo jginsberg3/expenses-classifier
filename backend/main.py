@@ -30,12 +30,15 @@ load_dotenv()
 
 app = FastAPI(lifespan=lifespan)
 
-# Get frontend URL from env or default to local dev
-frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
+# Get frontend URL(s) from env as a list, default to local dev
+# Supports "http://localhost:5173,http://192.168.0.153:5173"
+frontend_url_env = os.getenv("FRONTEND_URL", "http://localhost:5173")
+origins = [url.strip() for url in frontend_url_env.split(",")]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[frontend_url],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

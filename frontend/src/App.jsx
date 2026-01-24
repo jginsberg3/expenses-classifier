@@ -35,8 +35,7 @@ function App() {
     setResult(null)
 
     try {
-      // Use environment variable for API URL, fallback to localhost for safety
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+      const apiUrl = import.meta.env.VITE_API_URL || '/api'
       const response = await fetch(`${apiUrl}/classify`, {
         method: 'POST',
         headers: {
@@ -52,7 +51,7 @@ function App() {
       const data = await response.json()
       setResult(data)
     } catch (err) {
-      setError('Something went wrong. Please try again.')
+      setError(`Error connecting to backend: ${err.message}`)
       console.error(err)
     } finally {
       setLoading(false)
