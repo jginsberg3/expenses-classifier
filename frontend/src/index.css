@@ -267,6 +267,26 @@ button:disabled {
   font-size: 0.8rem;
   font-weight: 500;
   border: 1px solid rgba(99, 102, 241, 0.2);
+  appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.category-tag:hover {
+  background: rgba(99, 102, 241, 0.3);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.category-tag:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.4);
+}
+
+/* Style for the options */
+.category-tag option {
+  background-color: #1e293b;
+  color: #f8fafc;
 }
 
 @media (max-width: 600px) {

@@ -1,6 +1,26 @@
 import { useState } from 'react'
 import './index.css'
 
+const CATEGORIES = [
+  "Books",
+  "Charity",
+  "Clothes",
+  "Digital Services",
+  "Dining Out",
+  "Dry Cleaning",
+  "Fun",
+  "Groceries",
+  "Haircut",
+  "Health/Med",
+  "Laundry Card",
+  "Metrocard",
+  "Random",
+  "Rent",
+  "Supplies",
+  "Travel",
+  "Uber/Cabs",
+]
+
 function App() {
   const [text, setText] = useState('')
   const [result, setResult] = useState(null)
@@ -72,6 +92,13 @@ function App() {
     document.body.removeChild(link)
   }
 
+  const handleCategoryChange = (index, newCategory) => {
+    const newItems = result.items.map((item, i) =>
+      i === index ? { ...item, category: newCategory } : item
+    )
+    setResult({ ...result, items: newItems })
+  }
+
   return (
     <div className="container">
       <h1>Budget Classifier</h1>
@@ -122,7 +149,15 @@ function App() {
                     <tr key={index}>
                       <td className="td-date">{item.date}</td>
                       <td className="td-category">
-                        <span className="category-tag">{item.category}</span>
+                        <select
+                          className="category-tag"
+                          value={item.category}
+                          onChange={(e) => handleCategoryChange(index, e.target.value)}
+                        >
+                          {CATEGORIES.map(cat => (
+                            <option key={cat} value={cat}>{cat}</option>
+                          ))}
+                        </select>
                       </td>
                       <td className={`td-cost ${item.cost < 0 ? 'cost-highlight' : ''}`}>
                         {item.cost < 0 ? '+' : ''}${Math.abs(item.cost).toFixed(2)}
