@@ -62,12 +62,34 @@ function App() {
 
         {error && <p style={{ color: '#ef4444' }}>{error}</p>}
 
-        {result && (
+        {result && result.items && (
           <div className="result-area">
-            <span className="category-badge">Predicted Category</span>
-            <div className="category-name">{result.category}</div>
-            <div className="confidence">
-              Confidence: {(result.confidence * 100).toFixed(1)}%
+            <span className="category-badge">Categorized Results</span>
+            <div className="expense-table-container">
+              <table className="expense-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th style={{ textAlign: 'right' }}>Amount</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {result.items.map((item, index) => (
+                    <tr key={index}>
+                      <td className="td-date">{item.date}</td>
+                      <td className="td-category">
+                        <span className="category-tag">{item.category}</span>
+                      </td>
+                      <td className={`td-cost ${item.cost < 0 ? 'cost-highlight' : ''}`}>
+                        {item.cost < 0 ? '+' : ''}${Math.abs(item.cost).toFixed(2)}
+                      </td>
+                      <td>{item.desc}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         )}

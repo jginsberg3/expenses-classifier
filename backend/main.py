@@ -7,14 +7,19 @@ from model import classifier
 class ClassificationRequest(BaseModel):
     text: str
 
-class ClassificationResponse(BaseModel):
+class ExpenseItem(BaseModel):
+    date: str
     category: str
-    confidence: float
+    cost: float
+    desc: str
+
+class ClassificationResponse(BaseModel):
+    items: list[ExpenseItem]
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Load the model on startup
-    classifier.load_model("path/to/model.joblib")
+    classifier.load_models("models")
     yield
     # Clean up (if needed)
 
@@ -45,9 +50,6 @@ def classify_text(request: ClassificationRequest):
     if not request.text:
         raise HTTPException(status_code=400, detail="Text cannot be empty")
     
-    category = classifier.predict(request.text)
+    items = classifier.predict_v2(request.text)
     
-    # Mock confidence score
-    confidence = 0.95 
-    
-    return ClassificationResponse(category=category, confidence=confidence)
+    return ClassificationResponse(items=items)
