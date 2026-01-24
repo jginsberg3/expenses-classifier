@@ -146,8 +146,8 @@ function App() {
                 <tbody>
                   {result.items.map((item, index) => (
                     <tr key={index}>
-                      <td className="td-date">{item.date}</td>
-                      <td className="td-category">
+                      <td className="td-date" data-label="Date">{item.date}</td>
+                      <td className="td-category" data-label="Category">
                         <select
                           className="category-tag"
                           value={item.category}
@@ -158,10 +158,10 @@ function App() {
                           ))}
                         </select>
                       </td>
-                      <td className={`td-cost ${item.cost < 0 ? 'cost-highlight' : ''}`}>
+                      <td className={`td-cost ${item.cost < 0 ? 'cost-highlight' : ''}`} data-label="Amount">
                         {item.cost < 0 ? '+' : ''}${Math.abs(item.cost).toFixed(2)}
                       </td>
-                      <td>{item.desc}</td>
+                      <td data-label="Description">{item.desc}</td>
                     </tr>
                   ))}
                 </tbody>
