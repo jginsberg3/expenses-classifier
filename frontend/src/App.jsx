@@ -35,7 +35,7 @@ function App() {
     setResult(null)
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || '/api'
+      const apiUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '')
       const response = await fetch(`${apiUrl}/classify`, {
         method: 'POST',
         headers: {
