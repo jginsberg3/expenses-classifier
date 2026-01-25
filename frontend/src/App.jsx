@@ -98,6 +98,12 @@ function App() {
     setResult({ ...result, items: newItems })
   }
 
+  const handleClear = () => {
+    setText('')
+    setResult(null)
+    setError(null)
+  }
+
   return (
     <div className="container">
       <h1>Budget Classifier</h1>
@@ -115,7 +121,7 @@ function App() {
             onClick={handleClassify}
             disabled={loading || !text.trim()}
           >
-            {loading ? 'Classifying...' : 'Classify Entry'}
+            {loading ? 'Classifying...' : 'Classify Entries'}
           </button>
         </div>
 
@@ -166,6 +172,12 @@ function App() {
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            <div className="result-footer">
+              <button className="clear-btn" onClick={handleClear}>
+                Clear Entries
+              </button>
             </div>
           </div>
         )}

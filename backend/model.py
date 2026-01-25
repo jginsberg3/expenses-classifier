@@ -19,30 +19,14 @@ class BudgetClassifier:
             "Investments"
         ]
 
-
     def load_models(self, model_path: str = None):
         """
-        Mock loading of the model.
-        In the future, this will load the actual .joblib or .pkl file.
+        Load the ML model and related artifacts.
         """
         print(f"Loading model from `{model_path}`")
         self.model = load(f'{model_path}/model.joblib')
         self.tfidf = load(f'{model_path}/tfidf.joblib')
         self.id_to_category = load(f'{model_path}/id_to_category.joblib')
-
-    def predict(self, text: str) -> str:
-        """
-        Mock prediction logic.
-        Returns a consistent category based on hashing the text, 
-        so the same input gives the same output (useful for testing).
-        """
-        if not self.model:
-            # Auto-load if not loaded (or raise error)
-            self.load_model()
-        
-        # Simple deterministic mock based on hash
-        index = hash(text) % len(self.categories)
-        return self.categories[index]
 
     def parse_expenses(self, text: str) -> pd.DataFrame:
         """
@@ -90,7 +74,10 @@ class BudgetClassifier:
                 
         return pd.DataFrame(data, columns=['date', 'cost', 'desc'])
 
-    def predict_v2(self, user_txt: str) -> list[dict]:
+    def predict(self, user_txt: str) -> list[dict]:
+        '''
+        Predict the category for each line in the input text.
+        '''
         df = self.parse_expenses(user_txt)
         tfidf_desc = self.tfidf.transform(df['desc'])
         predicted_codes = self.model.predict(tfidf_desc)
