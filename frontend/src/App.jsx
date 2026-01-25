@@ -106,7 +106,7 @@ function App() {
       <div className="card">
         <div className="input-group">
           <textarea
-            placeholder="Enter budget entry (e.g., 'Groceries at Walmart $50')"
+            placeholder="Enter one or more budget entries like: '- 1/19 $21.27 groceries'"
             value={text}
             onChange={(e) => setText(e.target.value)}
             disabled={loading}
