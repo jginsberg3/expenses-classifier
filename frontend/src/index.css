@@ -202,6 +202,27 @@ button:disabled {
   }
 }
 
+.result-footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.clear-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.5rem;
+}
+
+.clear-btn:hover {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
 .expense-table-container {
   margin-top: 1.5rem;
   overflow-x: auto;
