@@ -131,13 +131,6 @@ function App() {
           <div className="result-area">
             <div className="results-header">
               <span className="category-badge">Categorized Results</span>
-              <button className="download-btn" onClick={handleDownloadCSV}>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-                  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-                </svg>
-                Download CSV
-              </button>
             </div>
             <div className="expense-table-container">
               <table className="expense-table">
@@ -167,7 +160,7 @@ function App() {
                       <td className={`td-cost ${item.cost < 0 ? 'cost-highlight' : ''}`} data-label="Amount">
                         {item.cost < 0 ? '+' : ''}${Math.abs(item.cost).toFixed(2)}
                       </td>
-                      <td data-label="Description">{item.desc}</td>
+                      <td className="td-desc" data-label="Description">{item.desc}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -175,6 +168,13 @@ function App() {
             </div>
 
             <div className="result-footer">
+              <button className="download-btn" onClick={handleDownloadCSV}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                </svg>
+                Download CSV
+              </button>
               <button className="clear-btn" onClick={handleClear}>
                 Clear Entries
               </button>
