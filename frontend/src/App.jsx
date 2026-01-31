@@ -167,7 +167,7 @@ function App() {
                       <td className={`td-cost ${item.cost < 0 ? 'cost-highlight' : ''}`} data-label="Amount">
                         {item.cost < 0 ? '+' : ''}${Math.abs(item.cost).toFixed(2)}
                       </td>
-                      <td data-label="Description">{item.desc}</td>
+                      <td className="td-desc" data-label="Description">{item.desc}</td>
                     </tr>
                   ))}
                 </tbody>
