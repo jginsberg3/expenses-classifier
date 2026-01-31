@@ -55,6 +55,9 @@ describe('App Component', () => {
     });
 
     it('handles API errors gracefully', async () => {
+        // Spy on console.error and mock it to stay silent during the expected error
+        const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { });
+
         fetch.mockRejectedValueOnce(new Error('Network error'));
 
         render(<App />);
@@ -67,6 +70,10 @@ describe('App Component', () => {
         await waitFor(() => {
             expect(screen.getByText(/Error connecting to backend: Network error/i)).toBeInTheDocument();
         });
+
+        // Verify console.error was indeed called, then restore it
+        expect(consoleSpy).toHaveBeenCalled();
+        consoleSpy.mockRestore();
     });
 
     it('clears results when "Clear Entries" is clicked', async () => {
