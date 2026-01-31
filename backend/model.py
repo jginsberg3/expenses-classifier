@@ -45,7 +45,7 @@ class BudgetClassifier:
         # 1. Date (e.g. 1/20)
         # 2. Cost/Amount (e.g. $57.80 or +$5)
         # 3. Description (rest of line)
-        pattern = re.compile(r'-\s+(\d+/\d+)\s+([+\-]?\$?[\d.]+)\s+(.*)')
+        pattern = re.compile(r'-\s+(\d+/\d+)\s+([+\-]?\$?[\d,.]+)\s+(.*)')
         
         for line in lines:
             line = line.strip()

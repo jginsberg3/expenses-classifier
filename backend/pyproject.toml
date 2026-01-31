@@ -10,4 +10,11 @@ dependencies = [
     "python-dotenv>=1.2.1",
     "scikit-learn==1.7.0",
     "uvicorn>=0.40.0",
+    "pytest>=8.0.0",
+    "httpx>=0.27.0",
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "smoke: marks tests as smoke tests (skipped by default)",
 ]
